@@ -10,7 +10,5 @@ import com.project.demo.model.Comment;
 import com.project.demo.model.Restaurent;
 
 public interface RestaurentDAO extends JpaRepository<Restaurent, Long> {
-
-//	@Query("Select c from comment c where c.restaurent_id = :restaurentId")
-//	public List<Comment> findByRestaurent_ID(@Param("restaurentId")long restaurentId);
+	
 }

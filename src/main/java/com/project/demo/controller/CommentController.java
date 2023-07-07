@@ -1,11 +1,13 @@
 package com.project.demo.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,15 +47,18 @@ public class CommentController {
 	}
 	
 	@PostMapping("/restaurent/{restaurentId}/user/{userId}")
-	public Comment createComment(@RequestBody Comment comment, @RequestParam long restaurentId, @RequestParam long userId) {
+	public Comment createComment(
+			@RequestBody Comment comment, 
+			@PathVariable("restaurentId") long restaurentId, 
+			@PathVariable("userId") long userId
+			) {
+		
 		Comment commentCreated = commentDao.save(comment);
-		Restaurent restaurent = restaurentDao.findById(restaurentId).orElse(null);
-		if(restaurent == null) {
-			throw new ResponseStatusException(
-					  HttpStatus.NOT_FOUND, "restaurent not found"
-					);
-		}
-		List<Comment> commentsRestaurent = restaurent.getComments();
+		
+		Restaurent restaurent = restaurentDao.findById(restaurentId).orElseThrow(()-> new ResponseStatusException(
+				  HttpStatus.NOT_FOUND, "restaurent not found"
+				));
+		Set<Comment> commentsRestaurent = restaurent.getComments();
 		commentsRestaurent.add(commentCreated);
 		restaurentDao.save(restaurent);
 		User user = userDao.findById(userId).orElse(null);
@@ -62,7 +67,7 @@ public class CommentController {
 					  HttpStatus.NOT_FOUND, "user not found"
 					);
 		}
-		List<Comment> commentsUser = user.getComments();
+		Set<Comment> commentsUser = user.getComments();
 		commentsUser.add(commentCreated);
 		userDao.save(user);
 		return commentCreated;

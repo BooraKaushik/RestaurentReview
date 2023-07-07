@@ -20,12 +20,5 @@ public class Comment {
 	private long id;
 	private String comment;
 	
-	@ManyToOne
-	@JoinColumn(name="Restaurent_ID")
-	private Restaurent restaurent;
-	
-	@ManyToOne
-	@JoinColumn(name="User_ID")
-	private User user;
 
 }

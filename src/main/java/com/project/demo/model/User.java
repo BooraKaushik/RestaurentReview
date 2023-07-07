@@ -1,8 +1,8 @@
 package com.project.demo.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -44,11 +44,12 @@ public class User {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="User_ID", referencedColumnName="User_ID")
-	private List<Rating> ratings = new ArrayList<>();
+	private Set<Rating> ratings = new HashSet<>();
 	
 
-	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
-	private List<Comment> comments = new ArrayList<>();
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="User_ID", referencedColumnName="User_ID")
+	private Set<Comment> comments = new HashSet<>();
 
     
 }

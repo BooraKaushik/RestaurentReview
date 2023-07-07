@@ -1,7 +1,7 @@
 package com.project.demo.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -35,12 +35,13 @@ public class Restaurent {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="Restaurent_ID", referencedColumnName="Restaurent_ID")
-	private List<Rating> ratings = new ArrayList<>();
-	
-	@OneToMany(mappedBy="restaurent",cascade=CascadeType.ALL)
-	private List<Comment> comments = new ArrayList<>();
+	private Set<Rating> ratings = new HashSet<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="Restaurent_ID", referencedColumnName="Restaurent_ID")
-	private List<MenuItem> menu = new ArrayList<>();
+	private Set<Comment> comments = new HashSet<>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="Restaurent_ID", referencedColumnName="Restaurent_ID")
+	private Set<MenuItem> menu = new HashSet<>();
 }

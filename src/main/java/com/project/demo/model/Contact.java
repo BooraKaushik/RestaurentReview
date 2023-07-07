@@ -9,7 +9,6 @@ import lombok.Data;
 
 @Entity
 @Table(name = "Contact")
-@Builder
 @Data
 public class Contact {
 	@Id
