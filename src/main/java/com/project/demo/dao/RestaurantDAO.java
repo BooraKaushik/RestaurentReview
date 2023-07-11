@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.project.demo.model.Comment;
-import com.project.demo.model.Restaurent;
+import com.project.demo.model.Restaurant;
 
-public interface RestaurentDAO extends JpaRepository<Restaurent, Long> {
+public interface RestaurantDAO extends JpaRepository<Restaurant, Long> {
 	
 }

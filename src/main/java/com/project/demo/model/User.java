@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,9 +17,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class User {
 	
 	@Id
@@ -46,9 +51,7 @@ public class User {
 	@JoinColumn(name="User_ID", referencedColumnName="User_ID")
 	private Set<Rating> ratings = new HashSet<>();
 	
-
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="User_ID", referencedColumnName="User_ID")
+	@OneToMany(mappedBy="user", orphanRemoval=true, cascade=CascadeType.ALL)
 	private Set<Comment> comments = new HashSet<>();
 
     

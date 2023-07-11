@@ -13,11 +13,14 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="Restaurent")
-@Data
-public class Restaurent {
+@Getter
+@Setter
+public class Restaurant {
 	@Id
 	@GeneratedValue
 	@Column(name="Restaurent_ID")
@@ -37,8 +40,7 @@ public class Restaurent {
 	@JoinColumn(name="Restaurent_ID", referencedColumnName="Restaurent_ID")
 	private Set<Rating> ratings = new HashSet<>();
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="Restaurent_ID", referencedColumnName="Restaurent_ID")
+	@OneToMany(mappedBy="restaurent", orphanRemoval=true, cascade=CascadeType.ALL)
 	private Set<Comment> comments = new HashSet<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
