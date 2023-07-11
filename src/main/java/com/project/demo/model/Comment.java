@@ -7,10 +7,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * This Class represents the Comment entity on DB.
+ */
 @Entity
 @Table(name = "Comment")
 @Getter
