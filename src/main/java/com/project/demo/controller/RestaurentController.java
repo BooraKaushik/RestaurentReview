@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.demo.dao.RestaurentDAO;
+import com.project.demo.dao.RestaurantDAO;
 import com.project.demo.model.Comment;
-import com.project.demo.model.Restaurent;
+import com.project.demo.model.Restaurant;
 
 @RestController
 @RequestMapping("/api/v1")
 public class RestaurentController {
 	@Autowired
-	private RestaurentDAO restaurentDao;
+	private RestaurantDAO restaurentDao;
 	
 	@GetMapping("/restaurent")
-	public List<Restaurent> getAllRestaurents() {
+	public List<Restaurant> getAllRestaurents() {
 		return restaurentDao.findAll();
 	}
 	
@@ -32,7 +32,7 @@ public class RestaurentController {
 	}
 	
 	@PostMapping("/restaurent")
-	public Restaurent createRestaurent(@RequestBody Restaurent restaurent) {
+	public Restaurant createRestaurent(@RequestBody Restaurant restaurent) {
 		return restaurentDao.save(restaurent);
 	}
 
