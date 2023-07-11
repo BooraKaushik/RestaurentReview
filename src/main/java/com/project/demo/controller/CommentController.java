@@ -23,6 +23,7 @@ import com.project.demo.dao.UserDAO;
 import com.project.demo.model.Comment;
 import com.project.demo.model.Restaurant;
 import com.project.demo.model.User;
+import com.project.demo.service.CommentService;
 
 /**
  * @author Kaushik Boora.
@@ -52,13 +53,7 @@ import com.project.demo.model.User;
 public class CommentController {
 
 	@Autowired
-	private CommentDAO commentDao;
-	
-	@Autowired
-	private RestaurantDAO restaurantDao;
-	
-	@Autowired
-	private UserDAO userDao;
+	private CommentService commentService;
 
 	/**
 	 * This Method Fetches all the comments from DB.
@@ -67,7 +62,7 @@ public class CommentController {
 	 */
 	@GetMapping("/")
 	public List<Comment> getAllComments() {
-		return commentDao.findAll();
+		return commentService.getAllComments();
 	}
 
 	/**
@@ -77,8 +72,7 @@ public class CommentController {
 	 */
 	@GetMapping("/{commentId}")
 	public Comment getComment(@RequestParam long commentId) {
-		return commentDao.findById(commentId).orElseThrow(
-				() -> new ResourceNotFoundException(String.format("No Comment found with id = %d", commentId)));
+		return commentService.getComment(commentId);
 	}
 	
 	/**
@@ -94,27 +88,7 @@ public class CommentController {
 			@PathVariable("restaurantId") long restaurantId, 
 			@PathVariable("userId") long userId
 			) {
-		
-		Restaurant restaurant = restaurantDao.findById(restaurantId).orElseThrow(()-> new ResponseStatusException(
-				  HttpStatus.NOT_FOUND, "restaurent not found"
-				));		
-		User user = userDao.findById(userId).orElseThrow(()-> new ResponseStatusException(
-				  HttpStatus.NOT_FOUND, "user not found"
-				));
-
-		
-		comment.setRestaurent(restaurant);
-		comment.setUser(user);
-
-		Comment savedComment = commentDao.save(comment);
-
-		restaurant.getComments().add(savedComment);
-		user.getComments().add(savedComment);
-		
-		restaurantDao.save(restaurant);
-		userDao.save(user);
-		
-		return savedComment;
+		return commentService.addComment(comment, restaurantId, userId);
 	}
 	
 	/**
@@ -125,10 +99,7 @@ public class CommentController {
 	 */
 	@PutMapping("/{commentId}")
 	public Comment updateComment(@RequestBody Comment comment, @PathVariable("commentId") long commentId) {
-		Comment commentExtracted = commentDao.findById(commentId).orElseThrow(
-				() -> new ResourceNotFoundException(String.format("No Comment found with id = %d", commentId)));
-		commentExtracted.setComment(comment.getComment());
-		return commentDao.save(commentExtracted);
+		return commentService.updateComment(comment, commentId);
 	}
 	
 	/**
@@ -137,20 +108,7 @@ public class CommentController {
 	 */
 	@DeleteMapping("/{commentId}")
 	public void deleteComment(@PathVariable("commentId") long commentId) {
-		Comment commentExtracted = commentDao.findById(commentId).orElseThrow(
-				() -> new ResourceNotFoundException(String.format("No Comment found with id = %d", commentId)));
-		Restaurant restaurent = commentExtracted.getRestaurent();
-		Set<Comment> restaurentComments = restaurent.getComments();
-		restaurentComments.remove(commentExtracted);
-		restaurantDao.save(restaurent);
-		
-		User user = commentExtracted.getUser();
-		Set<Comment> userComments = user.getComments();
-		userComments.remove(commentExtracted);
-		userDao.save(user);
-		
-		commentDao.delete(commentExtracted);
-		
+		commentService.deleteComment(commentId);
 	}
 
 }
