@@ -1,11 +1,7 @@
 package com.project.demo.controller;
 
 import java.util.List;
-import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,15 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import com.project.demo.dao.CommentDAO;
-import com.project.demo.dao.RestaurantDAO;
-import com.project.demo.dao.UserDAO;
+
 import com.project.demo.model.Comment;
-import com.project.demo.model.Restaurant;
-import com.project.demo.model.User;
-import com.project.demo.service.CommentService;
+import com.project.demo.service.CommentServiceImpl;
 
 /**
  * @author Kaushik Boora.
@@ -52,8 +43,16 @@ import com.project.demo.service.CommentService;
 @RequestMapping("/api/v1/comment")
 public class CommentController {
 
-	@Autowired
-	private CommentService commentService;
+	private CommentServiceImpl commentService;
+
+	/**
+	 * Constructor based Dependency Injection for Comment service.
+	 * @param commentService service that is needed.
+	 */
+	public CommentController(CommentServiceImpl commentService) {
+		super();
+		this.commentService = commentService;
+	}
 
 	/**
 	 * This Method Fetches all the comments from DB.

@@ -22,6 +22,12 @@ public class RatingServiceImpl implements RatingService {
 	private RestaurantDAO restaurantDao;
 	private UserDAO userDao;
 	
+	/**
+	 * Constructor for RatingServiceImpl that mandates ratingDao, restaurantDao and userDao.
+	 * @param ratingDao ratingDao class to perform CRUD operations
+	 * @param restaurantDao restaurantDao class to perform CRUD operations
+	 * @param userDao userDao class to perform CRUD operations
+	 */
 	public RatingServiceImpl(RatingDAO ratingDao, RestaurantDAO restaurantDao, UserDAO userDao) {
 		super();
 		this.ratingDao = ratingDao;
