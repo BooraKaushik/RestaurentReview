@@ -43,9 +43,8 @@ public class User {
 	@JoinColumn(name= "address")
 	private Address address;
 	
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="User_ID", referencedColumnName="User_ID")
+
+	@OneToMany(mappedBy="user", orphanRemoval=true, cascade=CascadeType.ALL)
 	private Set<Rating> ratings = new HashSet<>();
 	
 	@OneToMany(mappedBy="user", orphanRemoval=true, cascade=CascadeType.ALL)

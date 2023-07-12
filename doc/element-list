@@ -1,1 +1,5 @@
+com.project.demo
 com.project.demo.controller
+com.project.demo.dao
+com.project.demo.model
+com.project.demo.service
