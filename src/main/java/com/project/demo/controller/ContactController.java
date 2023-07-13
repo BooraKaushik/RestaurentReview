@@ -37,6 +37,10 @@ public class ContactController {
 	
 	private final ContactService contactService;
 	
+	/**
+	 * Constructor for Contact controller. Creates the controller object by taking contact service.
+	 * @param contactService service class required to perform operations on contact entity.
+	 */
 	public ContactController(ContactService contactService) {
 		super();
 		this.contactService = contactService;
