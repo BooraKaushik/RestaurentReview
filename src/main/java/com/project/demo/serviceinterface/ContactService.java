@@ -38,7 +38,7 @@ public interface ContactService {
 	public Contact updateContact(Contact contact, long contactId);
 	
 	/**
-	 * Deletes a contact whose id is provided.
+	 * Deletes a contact whose id is provided. Make sure that reference to the associated entity is deleted first.
 	 * @param contactId ID of the contact that must be deleted.
 	 */
 	public void deleteContact(long contactId);
