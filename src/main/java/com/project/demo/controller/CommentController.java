@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.demo.model.Comment;
 import com.project.demo.service.CommentServiceImpl;
 
+import jakarta.validation.Valid;
+
 /**
  * @author Kaushik Boora.
  * The API path for comments is /api/v1/comment.
@@ -83,7 +85,7 @@ public class CommentController {
 	 */
 	@PostMapping("/restaurant/{restaurantId}/user/{userId}")
 	public Comment createComment(
-			@RequestBody Comment comment, 
+			@Valid @RequestBody Comment comment, 
 			@PathVariable("restaurantId") long restaurantId, 
 			@PathVariable("userId") long userId
 			) {
@@ -97,7 +99,7 @@ public class CommentController {
 	 * @return updated comment stored on DB
 	 */
 	@PutMapping("/{commentId}")
-	public Comment updateComment(@RequestBody Comment comment, @PathVariable("commentId") long commentId) {
+	public Comment updateComment(@Valid @RequestBody Comment comment, @PathVariable("commentId") long commentId) {
 		return commentService.updateComment(comment, commentId);
 	}
 	

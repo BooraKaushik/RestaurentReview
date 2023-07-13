@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,8 @@ public class Restaurant {
 	@GeneratedValue
 	@Column(name="Restaurent_ID")
 	private long id;
+	
+	@NotBlank(message="Name of the restaurant is required")
 	private String name;
 	private String cusine;
 	

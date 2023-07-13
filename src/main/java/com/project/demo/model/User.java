@@ -14,6 +14,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,13 +29,19 @@ public class User {
 	@GeneratedValue
 	@Column(name="User_ID")
 	private long id;
+	
+	@NotBlank(message="First Name of User cant be null")
 	private String firstName;
+	
+	@NotBlank(message="Last Name of User cant be null")
 	private String lastName; 
 	
 	@Column(columnDefinition = "DATE")
+	@Past(message="DOB of User cant be in Future")
     private LocalDate dob;
 	
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="Geneder of User should be MALE / FEMALE / OTHER")
 	private Gender gender;
 	
 	@OneToOne(cascade=CascadeType.ALL)

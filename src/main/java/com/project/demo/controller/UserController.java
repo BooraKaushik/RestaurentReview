@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.demo.dao.UserDAO;
 import com.project.demo.model.User;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -25,7 +27,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/user")
-	public User createUser(@RequestBody User user){
+	public User createUser(@Valid @RequestBody User user){
 		return userDao.save(user);
 	}
 }

@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import lombok.Data;
 
 /**
@@ -19,6 +21,9 @@ public class Rating {
 	@Id
 	@GeneratedValue
 	private long id;
+
+    @DecimalMin(value = "0")
+    @DecimalMax(value = "5")
 	private int value;
 
 
