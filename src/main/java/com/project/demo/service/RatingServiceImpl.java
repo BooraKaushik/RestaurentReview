@@ -35,6 +35,7 @@ public class RatingServiceImpl implements RatingService {
 		this.userDao = userDao;
 	}
 	
+	@Override
 	public Rating addRating(Rating rating, long restaurantId, long userId) {
 		Restaurant restaurant = restaurantDao.findById(restaurantId).orElseThrow(()-> new ResponseStatusException(
 				  HttpStatus.NOT_FOUND, "restaurent not found"
@@ -56,16 +57,19 @@ public class RatingServiceImpl implements RatingService {
 		return savedRating;
 		
 	}
-	
+
+	@Override
 	public List<Rating> getAllRatings() {
 		return ratingDao.findAll();
 	}
-	
+
+	@Override
 	public Rating getRating(long ratingId) {
 		return ratingDao.findById(ratingId).orElseThrow(
 				() -> new ResourceNotFoundException(String.format("No Rating found with id = %d", ratingId)));
 	}
 
+	@Override
 	public Rating updateRating(Rating rating, long ratingId) {
 		Rating RatingExtracted = ratingDao.findById(ratingId).orElseThrow(
 				() -> new ResourceNotFoundException(String.format("No Rating found with id = %d", ratingId)));
@@ -73,6 +77,7 @@ public class RatingServiceImpl implements RatingService {
 		return ratingDao.save(RatingExtracted);
 	}
 
+	@Override
 	public void deleteRating(long ratingId) {
 		Rating ratingExtracted = ratingDao.findById(ratingId).orElseThrow(
 				() -> new ResourceNotFoundException(String.format("No Rating found with id = %d", ratingId)));

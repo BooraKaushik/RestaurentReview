@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.demo.model.Rating;
 import com.project.demo.serviceinterface.RatingService;
 
+import jakarta.validation.Valid;
+
 /**
  * @author Kaushik Boora.
  * The API path for Ratings is /api/v1/rating.
@@ -83,7 +85,7 @@ public class RatingController {
 	 */
 	@PostMapping("/restaurant/{restaurantId}/user/{userId}")
 	public Rating createRating(
-			@RequestBody Rating rating, 
+			@Valid @RequestBody Rating rating, 
 			@PathVariable("restaurantId") long restaurantId, 
 			@PathVariable("userId") long userId
 			) {
@@ -98,7 +100,7 @@ public class RatingController {
 	 * @return updated rating stored on DB
 	 */
 	@PutMapping("/{ratingId}")
-	public Rating updateRating(@RequestBody Rating rating, @PathVariable("ratingId") long ratingId) {
+	public Rating updateRating(@Valid @RequestBody Rating rating, @PathVariable("ratingId") long ratingId) {
 		return ratingService.updateRating(rating, ratingId);
 	}
 	

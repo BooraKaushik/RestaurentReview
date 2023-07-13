@@ -14,6 +14,8 @@ import com.project.demo.dao.RestaurantDAO;
 import com.project.demo.model.Comment;
 import com.project.demo.model.Restaurant;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1")
 public class RestaurentController {
@@ -32,7 +34,7 @@ public class RestaurentController {
 	}
 	
 	@PostMapping("/restaurent")
-	public Restaurant createRestaurent(@RequestBody Restaurant restaurent) {
+	public Restaurant createRestaurent(@Valid @RequestBody Restaurant restaurent) {
 		return restaurentDao.save(restaurent);
 	}
 
