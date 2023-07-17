@@ -29,7 +29,7 @@ public class Comment {
 
 	@JsonIgnore
 	@ManyToOne
-	private Restaurant restaurent;
+	private Restaurant restaurant;
 
 	@JsonIgnore
 	@ManyToOne

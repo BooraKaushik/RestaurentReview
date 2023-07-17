@@ -7,7 +7,7 @@ import com.project.demo.model.Food;
 /**
  * This Interface provides CRUD functionalities for Food.
  */
-public interface FoodServiceInterface {
+public interface FoodService {
 
 	/**
 	 * Adds food to the DB.

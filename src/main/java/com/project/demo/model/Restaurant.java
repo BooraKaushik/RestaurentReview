@@ -38,13 +38,12 @@ public class Restaurant {
 	@JoinColumn(name= "address")
 	private Address address;
 	
-	@OneToMany(mappedBy="restaurent", orphanRemoval=true, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="restaurant", orphanRemoval=true, cascade=CascadeType.ALL)
 	private Set<Rating> ratings = new HashSet<>();
 	
-	@OneToMany(mappedBy="restaurent", orphanRemoval=true, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="restaurant", orphanRemoval=true, cascade=CascadeType.ALL)
 	private Set<Comment> comments = new HashSet<>();
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="Restaurent_ID", referencedColumnName="Restaurent_ID")
+
+	@OneToMany(mappedBy="restaurant", orphanRemoval=true, cascade=CascadeType.ALL)
 	private Set<MenuItem> menu = new HashSet<>();
 }

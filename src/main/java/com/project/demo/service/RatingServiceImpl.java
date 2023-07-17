@@ -43,7 +43,7 @@ public class RatingServiceImpl implements RatingService {
 		User user = userDao.findById(userId).orElseThrow(()-> new ResponseStatusException(
 				  HttpStatus.NOT_FOUND, "user not found"
 				));
-		rating.setRestaurent(restaurant);
+		rating.setRestaurant(restaurant);
 		rating.setUser(user);
 
 		Rating savedRating = ratingDao.save(rating);
@@ -81,7 +81,7 @@ public class RatingServiceImpl implements RatingService {
 	public void deleteRating(long ratingId) {
 		Rating ratingExtracted = ratingDao.findById(ratingId).orElseThrow(
 				() -> new ResourceNotFoundException(String.format("No Rating found with id = %d", ratingId)));
-		Restaurant restaurent = ratingExtracted.getRestaurent();
+		Restaurant restaurent = ratingExtracted.getRestaurant();
 		restaurent.getRatings().remove(ratingExtracted);
 		restaurantDao.save(restaurent);
 		
