@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -72,7 +71,7 @@ public class CommentController {
 	 * @return the Info of comment that needs to be fetched.
 	 */
 	@GetMapping("/{commentId}")
-	public Comment getComment(@RequestParam long commentId) {
+	public Comment getComment(@PathVariable("commentId") long commentId) {
 		return commentService.getComment(commentId);
 	}
 	
