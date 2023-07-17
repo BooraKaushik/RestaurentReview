@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.project.demo.dao.FoodDAO;
 import com.project.demo.model.Food;
-import com.project.demo.serviceinterface.FoodServiceInterface;
+import com.project.demo.serviceinterface.FoodService;
 
 @Service
-public class FoodServiceImpl implements FoodServiceInterface {
+public class FoodServiceImpl implements FoodService {
 	private final FoodDAO foodDao;
 
 	/**

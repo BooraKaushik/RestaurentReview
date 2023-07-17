@@ -46,7 +46,7 @@ public class CommentServiceImpl implements CommentService {
 				));
 
 		
-		comment.setRestaurent(restaurant);
+		comment.setRestaurant(restaurant);
 		comment.setUser(user);
 
 		Comment savedComment = commentDao.save(comment);
@@ -79,7 +79,7 @@ public class CommentServiceImpl implements CommentService {
 	public void deleteComment(long commentId) {
 		Comment commentExtracted = commentDao.findById(commentId).orElseThrow(
 				() -> new ResourceNotFoundException(String.format("No Comment found with id = %d", commentId)));
-		Restaurant restaurent = commentExtracted.getRestaurent();
+		Restaurant restaurent = commentExtracted.getRestaurant();
 		Set<Comment> restaurentComments = restaurent.getComments();
 		restaurentComments.remove(commentExtracted);
 		restaurantDao.save(restaurent);

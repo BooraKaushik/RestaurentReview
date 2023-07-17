@@ -17,23 +17,23 @@ import com.project.demo.model.Restaurant;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/restaurant")
 public class RestaurentController {
 	@Autowired
 	private RestaurantDAO restaurentDao;
 	
-	@GetMapping("/restaurent")
+	@GetMapping("/")
 	public List<Restaurant> getAllRestaurents() {
 		return restaurentDao.findAll();
 	}
 	
-	@GetMapping("/restaurent/{restaurentId}/comments")
+	@GetMapping("/{restaurentId}/comments")
 	public List<Comment> getAllCommentsOfRestaurent(@RequestParam long restaurentId) {
 //		return restaurentDao.findByRestaurent_ID(restaurentId);
 		return null;
 	}
 	
-	@PostMapping("/restaurent")
+	@PostMapping("")
 	public Restaurant createRestaurent(@Valid @RequestBody Restaurant restaurent) {
 		return restaurentDao.save(restaurent);
 	}
