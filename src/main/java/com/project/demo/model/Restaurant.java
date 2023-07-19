@@ -16,6 +16,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * This Class represents the Restaurant entity on DB.
+ */
 @Entity
 @Table(name="Restaurent")
 @Getter
