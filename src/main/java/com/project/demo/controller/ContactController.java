@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,6 +65,19 @@ public class ContactController {
 	@GetMapping("/{contactId}")
 	public Contact getContact(@PathVariable("contactId") long contactId) {
 		return contactService.getContact(contactId);
+	}
+	/**
+	 * Updates a restaurant contact with the provided contact.
+	 * @param contact New Contact.
+	 * @param restaurantId Id of restaurant whose contact needs to be updated.
+	 * @return new contact.
+	 */
+	@PostMapping("restaurant/{restaurantId}")
+	public Contact setRestaurantContact(
+			@Valid @RequestBody Contact contact, 
+			@PathVariable("restaurantId") long restaurantId
+			) {
+		return contactService.addRestaurantContact(contact, restaurantId);
 	}
 	
 	/**

@@ -80,9 +80,7 @@ public class RestaurentController {
 	 * @return the restaurant that is created on the database.
 	 */
 	@PostMapping("/")
-	public Restaurant createRestaurant(
-			@Valid @RequestBody Restaurant restaurant
-			) {
+	public Restaurant createRestaurant(@Valid @RequestBody Restaurant restaurant) {
 		return restaurantService.addRestaurant(restaurant);
 	}
 	
@@ -94,7 +92,10 @@ public class RestaurentController {
 	 * @return updated restaurant stored on DB
 	 */
 	@PutMapping("/{restaurantId}")
-	public Restaurant updateRestaurant(@Valid @RequestBody Restaurant restaurant, @PathVariable("restaurantId") long restaurantId) {
+	public Restaurant updateRestaurant(
+			@Valid @RequestBody Restaurant restaurant, 
+			@PathVariable("restaurantId") long restaurantId
+			) {
 		return restaurantService.updateRestaurant(restaurant, restaurantId);
 	}
 	

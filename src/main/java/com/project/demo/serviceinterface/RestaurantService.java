@@ -2,7 +2,6 @@ package com.project.demo.serviceinterface;
 
 import java.util.List;
 
-import com.project.demo.dao.RestaurantDAO;
 import com.project.demo.model.Restaurant;
 
 /**
