@@ -15,6 +15,9 @@ import com.project.demo.model.Restaurant;
 import com.project.demo.model.User;
 import com.project.demo.serviceinterface.ContactService;
 
+/**
+ * This is a Service Class for Contact providing CRUD operations.
+ */
 @Service
 public class ContactServiceImpl implements ContactService {
 	
@@ -34,6 +37,10 @@ public class ContactServiceImpl implements ContactService {
 		Restaurant extractedRestaurant = restaurantDao.findById(restaurantId).orElseThrow(()-> new ResponseStatusException(
 				  HttpStatus.NOT_FOUND, "Restaurant not found"
 				));
+		Contact previousContact = extractedRestaurant.getContact();
+		if(previousContact != null) {
+			contactDao.delete(previousContact);
+		}
 		Contact savedContact = contactDao.save(contact);
 		extractedRestaurant.setContact(savedContact);
 		restaurantDao.save(extractedRestaurant);
@@ -45,6 +52,10 @@ public class ContactServiceImpl implements ContactService {
 		User extractedUser = userDao.findById(userId).orElseThrow(()-> new ResponseStatusException(
 				  HttpStatus.NOT_FOUND, "User not found"
 				));
+		Contact previousContact = extractedUser.getContact();
+		if(previousContact != null) {
+			contactDao.delete(previousContact);
+		}
 		Contact savedContact = contactDao.save(contact);
 		extractedUser.setContact(savedContact);
 		userDao.save(extractedUser);
@@ -71,11 +82,6 @@ public class ContactServiceImpl implements ContactService {
 			fetchedContact.setPhoneNumber(contact.getPhoneNumber());
 		}
 		return contactDao.save(fetchedContact);
-	}
-
-	@Override
-	public void deleteContact(long contactId) {
-		contactDao.deleteById(contactId);
 	}
 
     

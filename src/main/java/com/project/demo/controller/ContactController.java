@@ -24,6 +24,10 @@ import jakarta.validation.Valid;
  * <table border="1">
  * <caption>API description</caption>
  * <tr><th>HTTP Method</th><th>Path</th><th>Description</th></tr>
+ * <tr><td>POST</td><td>/api/v1/contact/restaurant/{restaurantId}</td>
+ * <td>Updates the Contact of a Restaurant by creating a new contact.</td></tr>
+ * <tr><td>POST</td><td>/api/v1/contact/user/{userId}</td>
+ * <td>Updates the Contact of a User by creating a new contact.</td></tr>
  * <tr><td>PUT</td><td>/api/v1/contact</td>
  * <td>Updates the contact with the provided contact</td></tr>
  * <tr><td>GET</td><td>/api/v1/contact</td><td>Fetches all the contacts in the Database.</td></tr>
@@ -66,6 +70,7 @@ public class ContactController {
 	public Contact getContact(@PathVariable("contactId") long contactId) {
 		return contactService.getContact(contactId);
 	}
+	
 	/**
 	 * Updates a restaurant contact with the provided contact.
 	 * @param contact New Contact.
@@ -81,6 +86,20 @@ public class ContactController {
 	}
 	
 	/**
+	 * Updates a User contact with the provided contact.
+	 * @param contact New Contact.
+	 * @param userId Id of User whose contact needs to be updated.
+	 * @return new contact.
+	 */
+	@PostMapping("user/{userId}")
+	public Contact setUserContact(
+			@Valid @RequestBody Contact contact, 
+			@PathVariable("userId") long userId
+			) {
+		return contactService.addUserContact(contact, userId);
+	}
+	
+	/**
 	 * Updates the contact with a new contact provided in the body.
 	 * @param contact New Contact
 	 * @param contactId ID of the contact that must be updated.
@@ -90,5 +109,5 @@ public class ContactController {
 	public Contact updateContact(@Valid @RequestBody Contact contact, @PathVariable("contactId") long contactId) {
 		return contactService.updateContact(contact, contactId);
 	}
-
+	
 }

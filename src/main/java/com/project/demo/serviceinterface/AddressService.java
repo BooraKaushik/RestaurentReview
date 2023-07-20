@@ -10,11 +10,20 @@ import com.project.demo.model.Address;
 public interface AddressService {
 	
 	/**
-	 * Adds address to the DB.
+	 * Adds address to the DB and links it with provided restaurant.
 	 * @param address Address data sent as a part of body.
+	 * @param restaurantId ID of the restaurant to which the address must be updated with.
 	 * @return the address that is created on the database.
 	 */
-	public Address addAddress(Address address);
+	public Address addRestaurantAddress(Address address, long restaurantId);
+
+	/**
+	 * Adds address to the DB and links it with provided user.
+	 * @param address Address data sent as a part of body.
+	 * @param userId ID of the user to which the address must be updated with.
+	 * @return the address that is created on the database.
+	 */
+	public Address addUserAddress(Address address, long userId);
 	
 	/**
 	 * This Method Fetches all the addresses from DB.
@@ -37,11 +46,5 @@ public interface AddressService {
 	 * @return updated address stored on DB
 	 */
 	public Address updateAddress(Address address, long addressId);
-	
-	/**
-	 * Deletes a address whose id is provided. Make sure that reference to the associated entity is deleted first.
-	 * @param addressId ID of the address that must be deleted.
-	 */
-	public void deleteAddress(long addressId);
 
 }

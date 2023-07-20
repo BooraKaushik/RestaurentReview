@@ -11,6 +11,9 @@ import com.project.demo.dao.UserDAO;
 import com.project.demo.model.User;
 import com.project.demo.serviceinterface.UserService;
 
+/**
+ * This is a Service Class for User providing CRUD operations.
+ */
 @Service
 public class UserServiceImpl implements UserService {
 	

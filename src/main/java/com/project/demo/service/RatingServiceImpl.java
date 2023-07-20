@@ -15,6 +15,9 @@ import com.project.demo.model.Restaurant;
 import com.project.demo.model.User;
 import com.project.demo.serviceinterface.RatingService;
 
+/**
+ * This is a Service Class for Rating providing CRUD operations.
+ */
 @Service
 public class RatingServiceImpl implements RatingService {
 	

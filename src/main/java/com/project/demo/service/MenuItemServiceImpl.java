@@ -14,6 +14,9 @@ import com.project.demo.model.MenuItem;
 import com.project.demo.model.Restaurant;
 import com.project.demo.serviceinterface.MenuItemService;
 
+/**
+ * This is a Service Class for MenuItem providing CRUD operations.
+ */
 @Service
 public class MenuItemServiceImpl implements MenuItemService {
 

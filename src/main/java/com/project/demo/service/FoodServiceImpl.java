@@ -9,6 +9,9 @@ import com.project.demo.dao.FoodDAO;
 import com.project.demo.model.Food;
 import com.project.demo.serviceinterface.FoodService;
 
+/**
+ * This is a Service Class for Food providing CRUD operations.
+ */
 @Service
 public class FoodServiceImpl implements FoodService {
 	private final FoodDAO foodDao;
