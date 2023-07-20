@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,10 @@ import jakarta.validation.Valid;
  * <table border="1">
  * <caption>API description</caption>
  * <tr><th>HTTP Method</th><th>Path</th><th>Description</th></tr>
+ * <tr><td>POST</td><td>/api/v1/address/restaurant/{restaurantId}</td>
+ * <td>Updates the Address of a Restaurant by creating a new address.</td></tr>
+ * <tr><td>POST</td><td>/api/v1/address/user/{userId}</td>
+ * <td>Updates the Address of a User by creating a new address.</td></tr>
  * <tr><td>PUT</td><td>/api/v1/address</td>
  * <td>Updates the address with the provided address</td></tr>
  * <tr><td>GET</td><td>/api/v1/address</td><td>Fetches all the addresses in the Database.</td></tr>
@@ -45,6 +50,35 @@ public class AddressController {
 		super();
 		this.addressService = addressService;
 	}
+	
+	/**
+	 * Updates a restaurant address with the provided address.
+	 * @param address New Address.
+	 * @param restaurantId Id of restaurant whose address needs to be updated.
+	 * @return new address.
+	 */
+	@PostMapping("restaurant/{restaurantId}")
+	public Address setRestaurantAddress(
+			@Valid @RequestBody Address address, 
+			@PathVariable("restaurantId") long restaurantId
+			) {
+		return addressService.addRestaurantAddress(address, restaurantId);
+	}
+	
+	/**
+	 * Updates a User address with the provided address.
+	 * @param address New Address.
+	 * @param userId Id of User whose address needs to be updated.
+	 * @return new address.
+	 */
+	@PostMapping("user/{userId}")
+	public Address setUserAddress(
+			@Valid @RequestBody Address address, 
+			@PathVariable("userId") long userId
+			) {
+		return addressService.addUserAddress(address, userId);
+	}
+	
 	
 	/**
 	 * This Method Fetches all the address from DB.

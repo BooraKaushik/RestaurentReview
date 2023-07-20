@@ -11,6 +11,9 @@ import com.project.demo.dao.RestaurantDAO;
 import com.project.demo.model.Restaurant;
 import com.project.demo.serviceinterface.RestaurantService;
 
+/**
+ * This is a Service Class for Restaurant providing CRUD operations.
+ */
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 

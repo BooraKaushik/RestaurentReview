@@ -10,11 +10,21 @@ import com.project.demo.model.Contact;
 public interface ContactService {
 	
 	/**
-	 * Adds contact to the DB.
+	 * Adds contact to the DB and links it with Restaurant.
 	 * @param contact Contact data sent as a part of body.
+	 * @param restaurantId ID of the restaurant to which the contact must be updated with.
 	 * @return the contact that is created on the database.
 	 */
-	public Contact addContact(Contact contact);
+	public Contact addRestaurantContact(Contact contact, long restaurantId);
+
+	/**
+	 * Adds contact to the DB and links it with User.
+	 * @param contact Contact data sent as a part of body.
+	 * @param userId ID of the user with which the contact must be updated.
+	 * @return the contact that is created on the database.
+	 */
+	public Contact addUserContact(Contact contact, long userId);
+	
 	/**
 	 * This Method Fetches all the contacts from DB.
 	 * 
@@ -36,10 +46,4 @@ public interface ContactService {
 	 * @return updated contact stored on DB
 	 */
 	public Contact updateContact(Contact contact, long contactId);
-	
-	/**
-	 * Deletes a contact whose id is provided. Make sure that reference to the associated entity is deleted first.
-	 * @param contactId ID of the contact that must be deleted.
-	 */
-	public void deleteContact(long contactId);
 }

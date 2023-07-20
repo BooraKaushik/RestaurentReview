@@ -16,6 +16,9 @@ import com.project.demo.model.Restaurant;
 import com.project.demo.model.User;
 import com.project.demo.serviceinterface.CommentService;
 
+/**
+ * This is a Service Class for Comment providing CRUD operations.
+ */
 @Service
 public class CommentServiceImpl implements CommentService {
 	
