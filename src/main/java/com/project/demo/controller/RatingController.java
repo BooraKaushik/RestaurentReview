@@ -44,7 +44,7 @@ import jakarta.validation.Valid;
 @RequestMapping(path = "/api/v1/rating", consumes = {"application/json"}, produces = {"application/json", "application/xml"})
 public class RatingController {
 	
-	private RatingService ratingService;
+	private final RatingService ratingService;
 
 	/**
 	 * Constructor based Dependency Injection for rating service.

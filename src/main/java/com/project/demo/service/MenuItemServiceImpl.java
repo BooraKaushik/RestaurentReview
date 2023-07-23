@@ -21,9 +21,9 @@ import com.project.demo.serviceinterface.MenuItemService;
 public class MenuItemServiceImpl implements MenuItemService {
 
 	
-	private FoodDAO foodDao;
-	private MenuItemDAO menuItemDao;
-	private RestaurantDAO restaurantDao;
+	private final FoodDAO foodDao;
+	private final MenuItemDAO menuItemDao;
+	private final RestaurantDAO restaurantDao;
 
 	/**
 	 * Constructor for MenuItemServiceImpl that mandates foodDao, restaurantDao and menuItemDao.

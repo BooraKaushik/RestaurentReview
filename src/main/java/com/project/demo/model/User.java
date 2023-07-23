@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,8 +29,15 @@ public class User {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="User_ID")
 	private long id;
+	
+	@NotBlank(message="Need Username to create a User")
+	@Column(unique=true, nullable= false)
+	private String userName;
+	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@NotBlank(message="Need Password to create a User")
+	private String password;
 	
 	@NotBlank(message="First Name of User cant be null")
 	private String firstName;

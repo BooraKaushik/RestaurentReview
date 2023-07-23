@@ -8,6 +8,7 @@ import com.project.demo.model.User;
  * This Interface provides CRUD functionalities for User.
  */
 public interface UserService {
+	
 	/**
 	 * Adds User to the DB.
 	 * @param user User data sent as a part of body.
@@ -28,6 +29,14 @@ public interface UserService {
 	 * @return the Info of User that needs to be fetched.
 	 */
 	public User getUser(long userId);
+	
+
+	/**
+	 * Fetches the information of User whose user name is provided.
+	 * @param userName userName of the User whose info needs to be fetched.
+	 * @return the Info of User that needs to be fetched.
+	 */
+	public User getUserByUserName(String userName);
 	
 	/**
 	 * Updates the User with a new User provided in the body.
