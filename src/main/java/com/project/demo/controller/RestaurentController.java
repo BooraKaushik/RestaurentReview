@@ -42,7 +42,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/v1/restaurant")
 public class RestaurentController {
 	
-	private RestaurantService restaurantService;
+	private final RestaurantService restaurantService;
 	
 	/**
 	 * Constructor based Dependency Injection for restaurant service.

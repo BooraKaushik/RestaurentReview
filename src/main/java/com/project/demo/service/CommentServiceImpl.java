@@ -22,9 +22,9 @@ import com.project.demo.serviceinterface.CommentService;
 @Service
 public class CommentServiceImpl implements CommentService {
 	
-	private CommentDAO commentDao;
-	private RestaurantDAO restaurantDao;
-	private UserDAO userDao;
+	private final CommentDAO commentDao;
+	private final RestaurantDAO restaurantDao;
+	private final UserDAO userDao;
 	
 	/**
 	 * Constructor for CommentServiceImpl that mandates commentDao, restaurantDao and userDao.

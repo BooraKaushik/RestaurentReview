@@ -42,7 +42,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/v1/user")
 public class UserController {
 	
-	private UserService userService;
+	private final UserService userService;
 	
 	/**
 	 * Constructor based Dependency Injection for user service.

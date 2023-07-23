@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -17,19 +18,22 @@ import com.project.demo.serviceinterface.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	private UserDAO userDao;
+	private final UserDAO userDao;
+    private final PasswordEncoder passwordEncoder;
 
 	/**
 	 * Constructor for UserServiceImpl that mandates userDao.
 	 * @param userDao userDao class to perform CRUD operations.
 	 */
-	public UserServiceImpl(UserDAO userDao) {
+	public UserServiceImpl(UserDAO userDao, PasswordEncoder passwordEncoder) {
 		super();
 		this.userDao = userDao;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
 	public User addUser(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userDao.save(user);
 	}
 
@@ -41,6 +45,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(long userId) {
 		return userDao.findById(userId).orElseThrow(()-> new ResponseStatusException(
+				  HttpStatus.NOT_FOUND, "User not found"
+				));
+	}
+	
+	@Override
+	public User getUserByUserName(String userName) {
+		return userDao.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(
 				  HttpStatus.NOT_FOUND, "User not found"
 				));
 	}

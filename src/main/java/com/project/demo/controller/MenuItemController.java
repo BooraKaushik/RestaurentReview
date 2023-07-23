@@ -44,7 +44,7 @@ import jakarta.validation.Valid;
 public class MenuItemController {
 
 	
-	private MenuItemService menuItemService;
+	private final MenuItemService menuItemService;
 
 	/**
 	 * Constructor based Dependency Injection for menuItem service.

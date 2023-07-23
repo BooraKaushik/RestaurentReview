@@ -42,7 +42,7 @@ import jakarta.validation.Valid;
 public class FoodController {
 
 
-	private FoodServiceImpl foodService;
+	private final FoodServiceImpl foodService;
 
 	/**
 	 * Constructor based Dependency Injection for Food service.

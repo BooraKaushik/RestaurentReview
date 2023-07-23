@@ -44,7 +44,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/v1/comment")
 public class CommentController {
 
-	private CommentServiceImpl commentService;
+	private final CommentServiceImpl commentService;
 
 	/**
 	 * Constructor based Dependency Injection for Comment service.

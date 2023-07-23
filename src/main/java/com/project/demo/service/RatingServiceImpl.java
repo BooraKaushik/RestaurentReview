@@ -21,9 +21,9 @@ import com.project.demo.serviceinterface.RatingService;
 @Service
 public class RatingServiceImpl implements RatingService {
 	
-	private RatingDAO ratingDao;
-	private RestaurantDAO restaurantDao;
-	private UserDAO userDao;
+	private final RatingDAO ratingDao;
+	private final RestaurantDAO restaurantDao;
+	private final UserDAO userDao;
 	
 	/**
 	 * Constructor for RatingServiceImpl that mandates ratingDao, restaurantDao and userDao.

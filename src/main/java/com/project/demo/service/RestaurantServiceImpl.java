@@ -17,7 +17,7 @@ import com.project.demo.serviceinterface.RestaurantService;
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
-	private RestaurantDAO restaurantDao;
+	private final RestaurantDAO restaurantDao;
 
 	/**
 	 * Constructor for RestaurantServiceImpl that mandates restaurantDao.
