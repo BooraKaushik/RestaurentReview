@@ -111,3 +111,6 @@ Implemented Documentation using Java Docs. Please find documentation of all the 
 ## Contributer
 
 [Kaushik Boora](https://www.linkedin.com/in/kaushik-boora/)
+
+
+In a dynamic and challenging venture, I took charge as a visionary leader, guiding a diverse team through uncharted territory. Amidst turbulent waters, I navigated with unwavering determination, fostering unity and igniting the team's passion for success. Through turbulent storms and towering obstacles, I led with resilience, turning challenges into stepping stones. Armed with technical expertise in C, Java, and Python, I propelled innovation and executed a project of monumental proportions. In this high-stakes journey, my unwavering commitment and problem-solving prowess forged a triumphant path, leaving an indelible mark on our shared triumph.
