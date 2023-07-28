@@ -4,6 +4,17 @@
 
 Restaurent Review Repo is a Backend Application Built using technologies like Spring Boot, Hibernate, MySQL, JWT. This Application provides APIs so that users can comment and rate restaurants. This application allows users to create a profile, Restaurants to create a restaurant, food and menu entities. The users can comment on these restaurants. This application provides Authentication using JWT. Thereby to create a restaurant, comment a user must be authenticated and must include bearer token in header.
 
+## How to Run the Application
+To run the Application follow the following Steps,
+1. Clone the Repository and change the current directory path to the cloned repository path.
+2. Make sure a DB instance is running with username password mentioned in the pom.xml.(Any changes in pom.xml require re building the Application)
+3. Move into the target directory and run the following command "java -jar RestaurentReview-0.0.1-SNAPSHOT.jar". 
+4. This should bootup the application and the application starts running on port 8080.
+
+## Postman Collection
+The Postman Collection consists of all the sample API requests to test the endpoints,
+Automated Login Process in postman. To login an automted script creates a temporary user and hits the login API to obtain a JWT. This JWT inturn is used by all the other requests to set the Bearer Token. 
+
 ## API Documentation
 
 ### User Entity
@@ -87,6 +98,15 @@ GET|/api/v1/menu-item|Fetches all the menuItems in the Database.| {} | YES
 GET|/api/v1/menu-item/{menuItemId}|Fetches the menuItem whose Id is mentioned in the PathVariable.| {} | YES
 PUT|/api/v1/menu-item/{menuItemId}|Updates the menuItem with new menuItem provided in the body.| <pre>{<br>    "price": 76.0,<br>    "calories":15.67<br>}</pre> | YES
 DELETE|/api/v1/menu-item/{menuItemId}|Deletes the menuItem whose id is provided in the path variable.| {} | YES
+
+
+### MenuItem Entity
+Creates a JWT that is valid for 12 hours.
+| HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
+| :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
+POST|/login|Takes username and password of a user, authenticates user and if valid creates a JWT token that is valid for 12 hrs since it is created.| <pre>{<br>            "userName": uName,<br>            "password": "Test@123"<br>        }<br></pre> | Not Applicable
+## Documentation
+Implemented Documentation using Java Docs. Please find documentation of all the classes under docs directory.
 
 ## Contributer
 
