@@ -23,10 +23,10 @@ This Resource requires users to be authenticated. JWT must be included in the he
 | HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
 | :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
 POST |/api/v1/restaurant/|Adds restaurant to DB. Expects the restaurant to be present in the body. | <pre>{<br>    "name":"Kaushik Restaurent",<br>    "cusine":"Indian",<br>    "contact":{<br>        "phoneNumber": "+1 8575551234",<br>        "email":"boora.k@northeastern.edu"<br>    },<br>    "address":{<br>        "street": "9 Dalwood Street",<br>        "apt": "Unit A",<br>        "city":"Boston",<br>        "state": "MA",<br>        "country": "United States of America",<br>        "pinCode": "500018"<br>    }<br>}</pre> | Yes
-GET |/api/v1/restaurant|Fetches all the restaurants in the Database.| No Body Reuired | Yes
-GET |/api/v1/restaurant/{restaurantId}|Fetches the restaurant whose Id is mentioned in the PathVariable.| No Body Reuired | Yes
+GET |/api/v1/restaurant|Fetches all the restaurants in the Database.| No Body Required | Yes
+GET |/api/v1/restaurant/{restaurantId}|Fetches the restaurant whose Id is mentioned in the PathVariable.| No Body Required | Yes
 PUT |/api/v1/restaurant/{restaurantId}| Updates the restaurant with new restaurant provided in the body. | <pre>{<br>    "name":"Boora Restaurent",<br>    "cusine":"Kaushik"<br>}</pre> | YES
-DELETE |/api/v1/restaurant/{restaurantId}|Deletes the restaurant whose id is provided in the path variable.| No Body Reuired | YES
+DELETE |/api/v1/restaurant/{restaurantId}|Deletes the restaurant whose id is provided in the path variable.| No Body Required | YES
 
 ### Address Entity
 This Resource requires users to be authenticated. JWT must be included in the header.
@@ -35,13 +35,25 @@ This Resource requires users to be authenticated. JWT must be included in the he
 POST|/api/v1/address/restaurant/{restaurantId}|Updates the Address of a Restaurant by creating a new address.| <pre>  {<br>    "street": "9 Dalwood Street",<br>    "apt": "Unit B",<br>    "city": "Boston",<br>    "state": "MA",<br>    "country": "United States of America",<br>    "pinCode": "500018"<br>}</pre> | YES
 POST|/api/v1/address/user/{userId}|Updates the Address of a User by creating a new address.| <pre>  {<br>    "street": "9 Dalwood Street",<br>    "apt": "Unit B",<br>    "city": "Boston",<br>    "state": "MA",<br>    "country": "United States of America",<br>    "pinCode": "500018"<br>}</pre> | YES
 PUT|/api/v1/address|Updates the address with the provided address| <pre>  {<br>    "street": "9 Dalwood Street",<br>    "apt": "Unit B",<br>    "city": "Boston",<br>    "state": "MA",<br>    "country": "United States of America",<br>    "pinCode": "500018"<br>}</pre> | YES
-GET|/api/v1/address|Fetches all the addresses in the Database.|  | YES
-GET/api/v1/address/{addressId}|Fetches the address whose Id is mentioned in the PathVariable.|  | YES
+GET|/api/v1/address|Fetches all the addresses in the Database.| No Body Required | YES
+GET|/api/v1/address/{addressId}|Fetches the address whose Id is mentioned in the PathVariable.| No Body Required | YES
 
 ### Contact Entity
 This Resource requires users to be authenticated. JWT must be included in the header.
 | HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
 | :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
+POST|/api/v1/contact/restaurant/{restaurantId}|Updates the Contact of a Restaurant by creating a new contact.| <pre>  {<br>    "phoneNumber":"+1 8572305117",<br>    "email":"kaushikboora2@gmail.com"<br>}</pre> | YES
+POST|/api/v1/contact/user/{userId}| Updates the Contact of a User by creating a new contact.| <pre>  {<br>    "phoneNumber":"+1 8572305117",<br>    "email":"kaushikboora2@gmail.com"<br>}</pre> | YES
+PUT|/api/v1/contact|Updates the contact with the provided contact| <pre>  {<br>    "phoneNumber":"+1 8572305117",<br>    "email":"kaushikboora2@gmail.com"<br>}</pre> | YES
+GET|/api/v1/contact|Fetches all the contacts in the Database.| No Body Required |YES
+GET|/api/v1/contact/{contactId}|Fetches the contact whose Id is mentioned in the PathVariable.| No Body Required | YES
+
+### Comment Entity
+This Resource requires users to be authenticated. JWT must be included in the header.
+| HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
+| :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
+POST|/api/v1/comment/restaurant/{restaurantId}/user/{userId}|Adds comment to DB and links it with User and Restaurant. Expects the comment to be present in the body and restaurant id and user id provided in the path variable.| | YES
+
 
 ## Contributer
 
