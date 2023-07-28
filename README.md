@@ -52,8 +52,41 @@ GET|/api/v1/contact/{contactId}|Fetches the contact whose Id is mentioned in the
 This Resource requires users to be authenticated. JWT must be included in the header.
 | HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
 | :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
-POST|/api/v1/comment/restaurant/{restaurantId}/user/{userId}|Adds comment to DB and links it with User and Restaurant. Expects the comment to be present in the body and restaurant id and user id provided in the path variable.| | YES
+POST|/api/v1/comment/restaurant/{restaurantId}/user/{userId}|Adds comment to DB and links it with User and Restaurant. Expects the comment to be present in the body and restaurant id and user id provided in the path variable.| <pre>  {<br>    "comment":"Hello !Ndia"<br>}</pre> | YES
+GET|/api/v1/comment|Fetches all the comments in the Database.| No Body Required | YES
+GET|/api/v1/comment/{commentId}|Fetches the comment whose Id is mentioned in the PathVariable.| No Body Required | YES
+PUT|/api/v1/comment/{commentId}|Updates the comment with new comment provided in the body.| <pre>  {<br>    "comment":"Hello!"<br>}</pre> | YES
+DELETE|/api/v1/comment/{commentId}|Deletes the comment whose id is provided in the path variable.| No Body Required | YES
 
+### Rating Entity
+This Resource requires users to be authenticated. JWT must be included in the header.
+| HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
+| :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
+POST|/api/v1/rating/restaurant/{restaurantId}/user/{userId}|Adds rating to DB and links it with User and Restaurant. Expects the rating to be present in the body and restaurant id and user id provided in the path variable.| <pre>  {<br>    "value": 4<br>}</pre> | YES
+GET|/api/v1/rating|Fetches all the ratings in the Database.| {} | YES
+GET|/api/v1/rating/{ratingId}|Fetches the rating whose Id is mentioned in the PathVariable.| {} | YES
+PUT|/api/v1/rating/{ratingId}|Updates the rating with new rating provided in the body.|<pre>  {<br>    "value": 3<br>}</pre> | YES
+DELETE|/api/v1/rating/{ratingId}|Deletes the rating whose id is provided in the path variable. | {} | YES
+
+### Food Entity
+This Resource requires users to be authenticated. JWT must be included in the header.
+| HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
+| :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
+POST|/api/v1/food/|Adds food to DB.| <pre>{<br>    "name":"Biryani",<br>    "ingredients":"Samolina, Urad dal, Baking soda, Salt",<br>    "cusine":"Indian"<br>}</pre> | YES
+GET|/api/v1/food|Fetches all the foods in the Database.| No Body Required | YES
+GET|/api/v1/food/{foodId}|Fetches the food whose Id is mentioned in the PathVariable.| No Body Required | YES
+PUT|/api/v1/food/{foodId}|Updates the food with new food provided in the body. | <pre>{<br>    "name":"Biryani",<br>    "ingredients":"Urad dal, Baking soda, Salt",<br>    "cusine":"Indian"<br>}</pre> | YES
+DELETE|/api/v1/food/{foodId}|Deletes the food whose id is provided in the path variable.| No Body Required | YES
+
+### MenuItem Entity
+This Resource requires users to be authenticated. JWT must be included in the header.
+| HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
+| :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
+POST|/api/v1/menu-item/restaurant/{restaurantId}/food/{foodId}|Adds menuItem to DB and links it with Food and Restaurant. Expects the menuItem to be present in the body and restaurant id and Food id provided in the path variable.| <pre>{<br>    "price": 30.0,<br>    "calories":15.67<br>}</pre> | YES
+GET|/api/v1/menu-item|Fetches all the menuItems in the Database.| {} | YES
+GET|/api/v1/menu-item/{menuItemId}|Fetches the menuItem whose Id is mentioned in the PathVariable.| {} | YES
+PUT|/api/v1/menu-item/{menuItemId}|Updates the menuItem with new menuItem provided in the body.| <pre>{<br>    "price": 76.0,<br>    "calories":15.67<br>}</pre> | YES
+DELETE|/api/v1/menu-item/{menuItemId}|Deletes the menuItem whose id is provided in the path variable.| {} | YES
 
 ## Contributer
 
