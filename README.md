@@ -6,7 +6,7 @@ Restaurent Review Repo is a Backend Application Built using technologies like Sp
 
 ## API Documentation
 
-### User Entity:
+### User Entity
 
 Creating User doesnt need authentication. So no JWT has to be included for creating a user.
 
@@ -27,6 +27,21 @@ GET |/api/v1/restaurant|Fetches all the restaurants in the Database.| No Body Re
 GET |/api/v1/restaurant/{restaurantId}|Fetches the restaurant whose Id is mentioned in the PathVariable.| No Body Reuired | Yes
 PUT |/api/v1/restaurant/{restaurantId}| Updates the restaurant with new restaurant provided in the body. | <pre>{<br>    "name":"Boora Restaurent",<br>    "cusine":"Kaushik"<br>}</pre> | YES
 DELETE |/api/v1/restaurant/{restaurantId}|Deletes the restaurant whose id is provided in the path variable.| No Body Reuired | YES
+
+### Address Entity
+This Resource requires users to be authenticated. JWT must be included in the header.
+| HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
+| :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
+POST|/api/v1/address/restaurant/{restaurantId}|Updates the Address of a Restaurant by creating a new address.| <pre>  {<br>    "street": "9 Dalwood Street",<br>    "apt": "Unit B",<br>    "city": "Boston",<br>    "state": "MA",<br>    "country": "United States of America",<br>    "pinCode": "500018"<br>}</pre> | YES
+POST|/api/v1/address/user/{userId}|Updates the Address of a User by creating a new address.| <pre>  {<br>    "street": "9 Dalwood Street",<br>    "apt": "Unit B",<br>    "city": "Boston",<br>    "state": "MA",<br>    "country": "United States of America",<br>    "pinCode": "500018"<br>}</pre> | YES
+PUT|/api/v1/address|Updates the address with the provided address| <pre>  {<br>    "street": "9 Dalwood Street",<br>    "apt": "Unit B",<br>    "city": "Boston",<br>    "state": "MA",<br>    "country": "United States of America",<br>    "pinCode": "500018"<br>}</pre> | YES
+GET|/api/v1/address|Fetches all the addresses in the Database.|  | YES
+GET/api/v1/address/{addressId}|Fetches the address whose Id is mentioned in the PathVariable.|  | YES
+
+### Contact Entity
+This Resource requires users to be authenticated. JWT must be included in the header.
+| HTTP Method |         Path          | Description                                                  | Example Body                                                                                                                                                                                                                                                                                                                                                                                                                                               | Requires Bearer Token |
+| :---------: | :-------------------: | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------: |
 
 ## Contributer
 
