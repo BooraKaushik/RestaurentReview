@@ -7,7 +7,7 @@ Restaurent Review Repo is a Backend Application Built using technologies like Sp
 ## How to Run the Application
 To run the Application follow the following Steps,
 1. Clone the Repository and change the current directory path to the cloned repository path.
-2. Make sure a DB instance is running with username password mentioned in the pom.xml.(Any changes in pom.xml require re building the Application)
+2. Make sure a DB instance is running with username password mentioned in the Application.properties.(Any changes in Application.properties require re building the Application)
 3. Move into the target directory and run the following command "java -jar RestaurentReview-0.0.1-SNAPSHOT.jar". 
 4. This should bootup the application and the application starts running on port 8080.
 
