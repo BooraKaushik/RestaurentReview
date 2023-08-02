@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.demo.model.AuthRequest;
-import com.project.demo.model.AuthResponse;
+import com.project.demo.dto.AuthRequest;
+import com.project.demo.dto.AuthResponse;
 import com.project.demo.service.AuthorizationUserDetailsService;
 import com.project.demo.serviceinterface.UserService;
 import com.project.demo.util.JwtUtil;

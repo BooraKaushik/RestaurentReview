@@ -2,6 +2,8 @@ package com.project.demo.serviceinterface;
 
 import java.util.List;
 
+import com.project.demo.dto.UserDTO;
+import com.project.demo.dto.UserEditDTO;
 import com.project.demo.model.User;
 
 /**
@@ -14,21 +16,21 @@ public interface UserService {
 	 * @param user User data sent as a part of body.
 	 * @return the user that is created on the database.
 	 */
-	public User addUser(User user);
+	public UserDTO addUser(UserDTO user);
 
 	/**
 	 * This Method Fetches all the Users from DB.
 	 * 
 	 * @return a list of Users from database.
 	 */
-	public List<User> getAllUsers();
+	public List<UserDTO> getAllUsers();
 	
 	/**
 	 * Fetches the information of User whose ID is provided.
 	 * @param userId Id of the User whose info needs to be fetched.
 	 * @return the Info of User that needs to be fetched.
 	 */
-	public User getUser(long userId);
+	public UserDTO getUser(long userId);
 	
 
 	/**
@@ -44,7 +46,7 @@ public interface UserService {
 	 * @param userId ID of the User that must be updated.
 	 * @return updated User stored on DB
 	 */
-	public User updateUser(User user, long userId);
+	public UserDTO updateUser(UserEditDTO user, long userId);
 	
 	/**
 	 * Deletes a User whose id is provided.

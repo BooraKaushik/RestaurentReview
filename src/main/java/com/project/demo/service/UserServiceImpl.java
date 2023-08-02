@@ -1,7 +1,9 @@
 package com.project.demo.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.project.demo.dao.UserDAO;
+import com.project.demo.dto.UserDTO;
+import com.project.demo.dto.UserEditDTO;
 import com.project.demo.model.User;
 import com.project.demo.serviceinterface.UserService;
 
@@ -20,33 +24,43 @@ public class UserServiceImpl implements UserService {
 	
 	private final UserDAO userDao;
     private final PasswordEncoder passwordEncoder;
+	private final ModelMapper modelMapper;
 
 	/**
 	 * Constructor for UserServiceImpl that mandates userDao.
 	 * @param userDao userDao class to perform CRUD operations.
 	 */
-	public UserServiceImpl(UserDAO userDao, PasswordEncoder passwordEncoder) {
+	public UserServiceImpl(UserDAO userDao, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
 		super();
 		this.userDao = userDao;
 		this.passwordEncoder = passwordEncoder;
+		this.modelMapper = modelMapper;
 	}
 
 	@Override
-	public User addUser(User user) {
+	public UserDTO addUser(UserDTO user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return userDao.save(user);
+		User savedUser = userDao.save(this.modelMapper.map(user, User.class));		
+		return this.modelMapper.map(savedUser, UserDTO.class) ;
 	}
 
 	@Override
-	public List<User> getAllUsers() {
-		return userDao.findAll();
+	public List<UserDTO> getAllUsers() {
+		List<User> data = userDao.findAll();
+		List<UserDTO> responseData = data
+										.stream()
+										.map(user -> this.modelMapper.map(user, UserDTO.class))
+										.collect(Collectors.toList());
+		return responseData;
 	}
 
 	@Override
-	public User getUser(long userId) {
-		return userDao.findById(userId).orElseThrow(()-> new ResponseStatusException(
+	public UserDTO getUser(long userId) {
+		User extractedUser = userDao.findById(userId).orElseThrow(()-> new ResponseStatusException(
 				  HttpStatus.NOT_FOUND, "User not found"
 				));
+		UserDTO responseData = this.modelMapper.map(extractedUser, UserDTO.class);
+		return responseData;
 	}
 	
 	@Override
@@ -57,7 +71,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(User user, long userId) {
+	public UserDTO updateUser(UserEditDTO user, long userId) {
 		User UserExtracted = userDao.findById(userId).orElseThrow(
 			() -> new ResourceNotFoundException(String.format("No user found with id = %d", userId)));
 		if(user.getFirstName() != null) {
@@ -72,7 +86,8 @@ public class UserServiceImpl implements UserService {
 		if(user.getGender() != null) {
 			UserExtracted.setGender(user.getGender());
 		}
-	return userDao.save(UserExtracted);
+		User userSaved = userDao.save(UserExtracted);
+		return this.modelMapper.map(userSaved, UserDTO.class);
 	}
 
 	@Override

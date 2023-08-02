@@ -1,5 +1,6 @@
 package com.project.demo.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -75,6 +76,10 @@ public class SecurityConfiguration {
 			AuthenticationConfiguration authenticationConfiguration
 			) throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
+	}
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 	
 }

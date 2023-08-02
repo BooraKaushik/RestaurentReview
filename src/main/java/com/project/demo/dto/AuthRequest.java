@@ -1,4 +1,4 @@
-package com.project.demo.model;
+package com.project.demo.dto;
 
 import lombok.Getter;
 import lombok.Setter;
